@@ -20,6 +20,7 @@
     "jspm": "^0.16.33",
     "mocha": "^2.4.5",
     "mocha-phantomjs": "^4.0.2",
+    "systemjs": "^0.19.27",
     "systemjs-builder": "^0.15.16"
   },
   "jspm": {
