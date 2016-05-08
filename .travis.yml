@@ -1,0 +1,20 @@
+git:
+  depth: 1
+language: node_js
+node_js:
+  - '0.11'
+  - '4'
+  - '5'
+  - '6'
+
+before_install:
+  - npm install
+  - jspm install
+script:
+  - npm run test-format
+  - npm run test
+  - npm run build
+cache:
+  directories:
+  - node_modules
+  - jspm_packages

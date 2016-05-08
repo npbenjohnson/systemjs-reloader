@@ -1,0 +1,40 @@
+<testsuite name="Mocha Tests" tests="18" failures="0" errors="0" skipped="0" timestamp="Sat, 07 May 2016 23:25:12 GMT" time="9.017">
+<testcase classname="Web: Wrapper" name="should trace newly loaded modules" time="0.02"/>
+<testcase classname="Web: Wrapper" name="should not trace state store" time="0.004"/>
+<testcase classname="Web: Wrapper" name="should normalize js module" time="0.002"/>
+<testcase classname="Web: Wrapper" name="should normalize non-js module with loader" time="0.003"/>
+<testcase classname="Web: Wrapper" name="should delete loads on delete" time="0.015"/>
+<testcase classname="Web: Wrapper" name="should map dynamic parents" time="0.017"/>
+<testcase classname="Web: Wrapper" name="should call reload on reloaded modules" time="0.002"/>
+<testcase classname="Web: Socket Client" name="Should open a new socket connection when created" time="0.003"/>
+<testcase classname="Web: Socket Client" name="Should initialize a change handler when created" time="0.002"/>
+<testcase classname="Web: Socket Client" name="Should single queue the changehandler" time="0.827"/>
+<testcase classname="Web: Reloader" name="should calculate an importer map for static and dynamic loads" time="0.038"/>
+<testcase classname="Web: Reloader" name="should call unload on deleted modules" time="0.034"/>
+<testcase classname="Web: Reloader" name="should delete importers on delete" time="0.045"/>
+<testcase classname="Web: StateStore" name="should store and return values" time="0.003"/>
+<testcase classname="Web: debounce" name="should call onCanceled handler when debouncing" time="0.001"/>
+<testcase classname="Web: debounce" name="should pass args to functions" time="0.001"/>
+<testcase classname="Web: Unique Array" name="should return unique array" time="0.001"/>
+<testcase classname="Web: Object Values" name="should return object values" time="0"/>
+</testsuite>
+<testsuite name="Mocha Tests" tests="18" failures="0" errors="0" skipped="0" timestamp="Sat, 07 May 2016 23:25:21 GMT" time="5.986">
+<testcase classname="Node: Wrapper" name="should trace newly loaded modules" time="0.02"/>
+<testcase classname="Node: Wrapper" name="should not trace state store" time="0.001"/>
+<testcase classname="Node: Wrapper" name="should normalize js module" time="0.001"/>
+<testcase classname="Node: Wrapper" name="should normalize non-js module with loader" time="0.001"/>
+<testcase classname="Node: Wrapper" name="should delete loads on delete" time="0.014"/>
+<testcase classname="Node: Wrapper" name="should map dynamic parents" time="0.015"/>
+<testcase classname="Node: Wrapper" name="should call reload on reloaded modules" time="0.001"/>
+<testcase classname="Node: Socket Client" name="Should open a new socket connection when created" time="0.007"/>
+<testcase classname="Node: Socket Client" name="Should initialize a change handler when created" time="0.005"/>
+<testcase classname="Node: Socket Client" name="Should single queue the changehandler" time="0.807"/>
+<testcase classname="Node: Reloader" name="should calculate an importer map for static and dynamic loads" time="0.031"/>
+<testcase classname="Node: Reloader" name="should call unload on deleted modules" time="0.028"/>
+<testcase classname="Node: Reloader" name="should delete importers on delete" time="0.035"/>
+<testcase classname="Node: StateStore" name="should store and return values" time="0.003"/>
+<testcase classname="Node: debounce" name="should call onCanceled handler when debouncing" time="0.005"/>
+<testcase classname="Node: debounce" name="should pass args to functions" time="0.002"/>
+<testcase classname="Node: Unique Array" name="should return unique array" time="0.001"/>
+<testcase classname="Node: Object Values" name="should return object values" time="0"/>
+</testsuite>

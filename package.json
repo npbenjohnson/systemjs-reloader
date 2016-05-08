@@ -1,0 +1,48 @@
+{
+  "name": "systemjs-reloader",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "registry": "jspm",
+  "scripts": {
+    "test": "mocha --harmony test/test.js",
+    "build": "node --harmony build.js",
+    "fix-format": "eslint --fix lib/*",
+    "test-format": "eslint lib/*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/npbenjohnson/systemjs-reloader.git"
+  },
+  "author": "Ben Johnson",
+  "devDependencies": {
+    "eslint": "^2.9.0",
+    "jspm": "^0.16.33",
+    "mocha": "^2.4.5",
+    "mocha-phantomjs": "^4.0.2",
+    "systemjs-builder": "^0.15.16"
+  },
+  "jspm": {
+    "configFile": "test/systemjs-config.js",
+    "dependencies": {
+      "process": "github:jspm/nodelibs-process@^0.1.2",
+      "socket.io-client": "github:socketio/socket.io-client@^1.4.6"
+    },
+    "devDependencies": {
+      "babel": "npm:babel-core@^5.8.24",
+      "babel-runtime": "npm:babel-runtime@^5.8.24",
+      "chai": "github:chaijs/chai@^3.5.0",
+      "chai-as-promised": "npm:chai-as-promised@^5.3.0",
+      "core-js": "npm:core-js@^1.1.4",
+      "q": "github:kriskowal/q@1",
+      "sinon": "github:sinonjs/sinon@1",
+      "sinon-chai": "github:domenic/sinon-chai@^2.8.0"
+    },
+    "overrides": {
+      "github:chaijs/chai@3.5.0": {
+        "main": "chai.js"
+      }
+    }
+  },
+  "dependencies": {}
+}
