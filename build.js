@@ -5,7 +5,7 @@ var Builder = require('systemjs-builder')
 var builder = new Builder('.', './test/systemjs-config.js');
 
 builder
-.buildStatic('lib/reloader.js', 'index.static.js', { minify: true, sourceMaps: true, mangle: false })
+.buildStatic('lib/reloader.js', 'systemjs-reloader.js', { minify: true, sourceMaps: true, mangle: false })
 .then(function() {
   console.log('Build complete');
 })

@@ -3,15 +3,22 @@ git:
 language: node_js
 node_js:
   - '0.12'
-
-install::
+install:
   - npm install
   - jspm install
 script:
   - npm run test-format
   - npm run test
   - npm run build
+  - if [ "${TRAVIS_TAG}" != "" ]; then zip systemjs-reloader.zip systemjs-reloader.js systemjs-reloader.js.map; fi
 cache:
   directories:
   - node_modules
   - jspm_packages
+deploy:
+  provider: releases
+  api_key: ${GITHUB_AUTH_TOKEN}
+  file: systemjs-reloader.zip
+  skip_cleanup: true
+  on:
+    tags: true

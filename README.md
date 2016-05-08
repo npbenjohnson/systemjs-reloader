@@ -6,13 +6,13 @@ Reloads modules, and plugin-loaded resources, in response to socket.io file chan
 
 ## Install
 
+systemjs-reloader.zip is available in github releases and it contains a static bundle that should work if not using a transpiler, otherwise:
+
 ``` bash
   jspm install sjsReload = github:npbenjohnson/systemjs-reloader
 ```
 
 ## Usage
-
-index.static.js is a built systemjs static bundle that should work if not using a transpiler, otherwise:
 
 ``` js
 System.import('sjsReload').then(function (SjsReload) {
