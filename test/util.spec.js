@@ -1,10 +1,10 @@
-import { debounce, uniqueArray, objectValues} from 'lib/util.js'
+import { Debouncer, uniqueArray, objectValues} from 'lib/util.js'
 
 describe('debounce', function(){
 	it('should call onCanceled handler when debouncing', function(){
 		var cancelled = this.sinon.spy();
 		var fired = this.sinon.spy();
-		var tester = debounce(fired, 100, cancelled);
+		var tester = new Debouncer(fired, 100, cancelled);
 		tester();
 		tester();
 		tester();
@@ -17,7 +17,7 @@ describe('debounce', function(){
 	it('should pass args to functions', function(){
 		var cancelled = this.sinon.spy();
 		var fired = this.sinon.spy();
-		var tester = debounce(fired, 100, cancelled);
+		var tester = new Debouncer(fired, 100, cancelled);
 		tester(true);
 		tester(false);
 		tester('foo');
@@ -26,6 +26,17 @@ describe('debounce', function(){
 			expect(cancelled.getCall(1).args[0]).to.equal(false);
 			expect(fired.getCall(0).args[0]).to.equal('foo');
 		})).to.eventually.resolve
+	})
+	it('should preserve context', function(){
+		var c1 = null;
+		var c2 = null;
+		var ctx = {test:'test'};
+		var func = new Debouncer(function(){c1 = this;}, 50, function(){c2 = this}, ctx);
+		func();
+		func();
+		return expect(q.delay(100).then(function(){
+			return [c1, c2];
+		})).to.eventually.deep.equal([ctx,ctx]);
 	})
 })
 

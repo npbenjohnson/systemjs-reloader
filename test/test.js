@@ -5,19 +5,21 @@ var setup = require('./mocha-setup.js');
 var runnerArgs = getRunnerArgs();
 setup(global).then(function(){ 
   // Run the web tests specified in testrunner.html (blocking)
-  phantom('test/testrunner.html');
+  var result = phantom('test/testrunner.html');
+  if(result.status != 0)
+    process.exit(result.status);
   return q.all([
     System.import('test/util.spec.js'),
     System.import('test/state-store.spec.js'),
     System.import('test/systemjs-wrapper.spec.js'),
     System.import('test/socket-client.spec.js'),
     System.import('test/reloader.spec.js')
-  ]).then(run).catch(function(){console.log(error);run();});
-});
+  ]).then(run);
+}).catch(function(err){console.log(err); console.log(err.stack);process.exit(1)});;
 
 function phantom(htmlFile) {
   // Run the specified file as a mocha-phantom test, its output will be piped into this test's output
-    spawn(path.resolve('node_modules/.bin/mocha-phantomjs' + (process.platform.match(/^win/) ? '.cmd' : '')), runnerArgs.concat([htmlFile]), { stdio: 'inherit', stderr: 'pipe' });
+  return spawn(path.resolve('node_modules/.bin/mocha-phantomjs' + (process.platform.match(/^win/) ? '.cmd' : '')), runnerArgs.concat([htmlFile]), { stdio: 'inherit', stderr: 'pipe' });
 }
 
 function getRunnerArgs() {

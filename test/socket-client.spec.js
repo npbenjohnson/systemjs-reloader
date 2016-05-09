@@ -2,12 +2,10 @@
 describe('Socket Client', function(){
 	beforeEach(function(){
 		var self = this;
-		this.onSpy = this.sinon.spy();
+		this.onSpy = this.sinon.stub();
 		this.socket = this.sinon.stub();
 		this.socket.returns({on:this.onSpy});
-		this.debounce = this.sinon.stub();
 		this.system.set(this.system.normalizeSync('socket.io-client'), this.system.newModule({default: this.socket}));
-		this.system.set(this.system.normalizeSync('lib/debounce.js'), this.system.newModule({default: this.debounce}));
 		return this.system.import('lib/socket-client.js').then(function(Client){
 			self.Client = Client.default;
 		}).catch(console.log);
@@ -47,5 +45,16 @@ describe('Socket Client', function(){
 			expect(changeHandler.getCall(3).args[0]).to.deep.equal(['5','6'])
 			return changeHandler.callCount;
 		})).to.eventually.equal(4);
+	})
+	it('Should trigger handler with files on debounce',function(){
+		var changeHandler = this.sinon.stub();
+		changeHandler.returns(q.delay(100));
+		var client = new this.Client('testUrl', changeHandler, 50);
+		var internalChangeHandler = this.onSpy.getCall(0).args[1];
+		internalChangeHandler('file1.txt');
+		internalChangeHandler({ path: 'file2.txt' });
+		return expect(q.delay(100).then(function(){
+			return changeHandler.getCall(0).args[0];
+		})).to.eventually.deep.equal(['file1.txt', 'file2.txt']);
 	})
 })
