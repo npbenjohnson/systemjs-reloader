@@ -4,7 +4,7 @@
   "main": "index.js",
   "registry": "jspm",
   "scripts": {
-    "test": "mocha --harmony test/test.js",
+    "test": "npm run test-format && mocha --harmony test/test.js",
     "build": "node --harmony build.js",
     "fix-format": "eslint --fix lib/*",
     "test-format": "eslint lib/*"

@@ -7,8 +7,6 @@ install:
   - npm install
   - jspm install
 script:
-  - npm run test-format
-  - npm run test
   - npm run build
   - if [ "${TRAVIS_TAG}" != "" ]; then zip systemjs-reloader.zip systemjs-reloader.js systemjs-reloader.js.map; fi
 cache:
@@ -16,9 +14,9 @@ cache:
   - node_modules
   - jspm_packages
 deploy:
-  provider: releases
-  api_key: ${GITHUB_AUTH_TOKEN}
-  file: systemjs-reloader.zip
   skip_cleanup: true
+  provider: releases
+  api_key: "${GITHUB_AUTH_TOKEN}"
+  file: "systemjs-reloader.zip"
   on:
     tags: true
