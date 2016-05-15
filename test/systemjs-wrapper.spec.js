@@ -13,7 +13,7 @@ describe('Wrapper', function(){
 	})
 	it('should trace newly loaded modules', function(){
 		var self = this;
-		return expect(this.system.import('test/fakemodule.js').then( function(module){
+		return expect(this.system.import('test/fakes/fakemodule.js').then( function(module){
 			return Object.keys(self.wrapped.moduleEntries).length;
 		})).to.eventually.equal(1);
 	})
@@ -31,21 +31,21 @@ describe('Wrapper', function(){
 	})
 	it('should delete loads on delete', function(){
 		var self = this;
-		return expect(this.system.import('test/fakemodule.js').then( function(module){
-			self.system['delete'](self.base + 'test/fakemodule.js');
+		return expect(this.system.import('test/fakes/fakemodule.js').then( function(module){
+			self.system['delete'](self.base + 'test/fakes/fakemodule.js');
 			return Object.keys(self.wrapped.moduleEntries).length; 
 		})).to.eventually.equal(0);
 	})
 	it('should map dynamic parents', function(){
 		var self = this;
-		return expect(this.system.import('test/fakemodule.js', this.base).then( function(module){
-			return self.wrapped.getDynamicParents(self.system.normalizeSync('test/fakemodule.js'))[0]; 
+		return expect(this.system.import('test/fakes/fakemodule.js', this.base).then( function(module){
+			return self.wrapped.getDynamicParents(self.system.normalizeSync('test/fakes/fakemodule.js'))[0]; 
 		})).to.eventually.equal(this.base);
 	})
 	it('should call reload on reloaded modules', function(){
 		var self = this;
 		self.wrapped.stateStore = {reload: this.sinon.spy()};
-		return expect(this.system.import('test/fakemodule.js').then(function(module){
+		return expect(this.system.import('test/fakes/fakemodule.js').then(function(module){
 			return self.wrapped.stateStore.calledOnce;
 		})).to.eventually.equal.true;
 	})

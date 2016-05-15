@@ -13,10 +13,10 @@ describe('Reloader', function(){
 	it('should calculate an importer map for static and dynamic loads', function(){
 		var self = this;
 		var dynamicFakeParentName = this.system.normalizeSync('');
-		var fakeModuleName = this.system.normalizeSync('test/fakemodule.js');
-		var fakeModuleWithDepsName = this.system.normalizeSync('test/fakemodule-with-dep.js');
-		return expect(this.system.import('test/fakemodule-with-dep.js').then(function(){
-			return self.system.import('test/fakemodule.js', dynamicFakeParentName)
+		var fakeModuleName = this.system.normalizeSync('test/fakes/fakemodule.js');
+		var fakeModuleWithDepsName = this.system.normalizeSync('test/fakes/fakemodule-with-dep.js');
+		return expect(this.system.import('test/fakes/fakemodule-with-dep.js').then(function(){
+			return self.system.import('test/fakes/fakemodule.js', dynamicFakeParentName)
 		}).then(function(){
 			var importerMap = self.reloader._createImporterMap();
 			expect(importerMap.get(self.reloader.system.loads[fakeModuleName])).to.deep.equal([dynamicFakeParentName, fakeModuleWithDepsName]);
@@ -27,19 +27,19 @@ describe('Reloader', function(){
 		var self = this;
 		var spy = this.sinon.spy();
 		this.reloader._stateStore = {unload:spy};
-		return expect(this.system.import('test/fakemodule.js').then(function(){
-			return self.reloader._reload([self.system.normalizeSync('test/fakemodule.js')])
+		return expect(this.system.import('test/fakes/fakemodule.js').then(function(){
+			return self.reloader._reload([self.system.normalizeSync('test/fakes/fakemodule.js')])
 		}).then(function(){
 			return spy.calledOnce;
 		})).to.eventually.equal(true);
 	})
 	it('should delete importers on delete', function(){
 		var self = this;
-		var fakeModuleName = this.system.normalizeSync('test/fakemodule.js');
-		var fakeModuleWithDepsName = this.system.normalizeSync('test/fakemodule-with-dep.js');
+		var fakeModuleName = this.system.normalizeSync('test/fakes/fakemodule.js');
+		var fakeModuleWithDepsName = this.system.normalizeSync('test/fakes/fakemodule-with-dep.js');
 		var fakeMap = new WeakMap();
 		fakeMap[fakeModuleWithDepsName] = [fakeModuleName];
-		return expect(this.system.import('test/fakemodule-with-dep.js').then(function(){
+		return expect(this.system.import('test/fakes/fakemodule-with-dep.js').then(function(){
 			var entry = self.reloader._wrapper.moduleEntries[fakeModuleWithDepsName];
 			fakeMap.set(entry, [fakeModuleName])
 			expect(Object.keys(self.reloader._wrapper.moduleEntries).length).to.equal(2)

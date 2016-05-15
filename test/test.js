@@ -6,8 +6,7 @@ var runnerArgs = getRunnerArgs();
 setup(global).then(function(){ 
   // Run the web tests specified in testrunner.html (blocking)
   var result = phantom('test/testrunner.html');
-  if(result.status != 0)
-    process.exit(result.status);
+  process.exitCode = result.status;
   return q.all([
     System.import('test/util.spec.js'),
     System.import('test/state-store.spec.js'),

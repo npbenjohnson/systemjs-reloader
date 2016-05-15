@@ -2,27 +2,9 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <!-- Remove pending https://github.com/nathanboktae/mocha-phantomjs/issues/235 fix -->
-    <script>
-    if(/PhantomJS/i.test(window.navigator.userAgent))
-          Function.prototype.bind = function bind(obj) {
-              var args = Array.prototype.slice.call(arguments, 1),
-                  self = this,
-                  nop = function() {
-                  },
-                  bound = function() {
-                      return self.apply(
-                          this instanceof nop ? this : (obj || {}), args.concat(
-                              Array.prototype.slice.call(arguments)
-                          )
-                      );
-                  };
-              nop.prototype = this.prototype || {};
-              bound.prototype = new nop();
-              return bound;
-          };
-    </script>
     <script src="../node_modules/systemjs/dist/system.src.js"></script>
+    <!-- Make lookups relative to the project folder (not the test folder) -->
+    <script>System.config({baseURL: '../'})</script>
     <script src="systemjs-config.js"></script>
     <link rel="stylesheet" type="text/css" href="../node_modules/mocha/mocha.css">
     <script src="../node_modules/mocha/mocha.js"></script>
@@ -30,8 +12,6 @@
   <body>
     <div id="mocha"></div>
     <script>
-      // Make lookups relative to the project folder (not the test folder)
-      System.baseURL = '../';
       // Set up the test framework
       System.import('./mocha-setup.js').then( function(setup){
         setup(window).then(function(){
