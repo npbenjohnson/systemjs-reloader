@@ -1,5 +1,7 @@
 # systemjs-reloader ![](https://api.travis-ci.org/npbenjohnson/systemjs-reloader.svg?branch=master)
 
+WARNING: This project isn't really adapted yet, so StateStore is going to be replaced with a plugin system for major version 1. Plugins written against StateStore will have to be adjusted to use events after the change, and the __unload __reload behavior will be implemented as a Plugin [Issue Here](https://github.com/npbenjohnson/systemjs-reloader/issues/2)
+
 Live module reloading for SystemJs. Inspired by [systemjs-hot-reloader](https://github.com/capaj/systemjs-hot-reloader), compatible with [chokidar-socket-emitter](https://github.com/capaj/chokidar-socket-emitter) event format.
 
 Reloads modules, and plugin-loaded resources, in response to socket.io file change events.
